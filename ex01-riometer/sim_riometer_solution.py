@@ -9,7 +9,7 @@ from pymsis import msis
 
 # Precomputed ionization profile using Sergienko and Ivanov (1993)
 # 
-h=h5py.File("q_10keV.h5","r")
+h=h5py.File("ex01-riometer/q_10keV.h5","r")
 # ionization rate as a function of altitude of a
 # precipitation flux of one electron per squaremeter per second
 # primary auroral electron with energy of 10 keV
@@ -29,7 +29,7 @@ msis_dates = n.array([n.datetime64("2024-01-01T00:00")])
 lat = 69.65
 lon = 18.96
 
-data = msis.run(msis_dates, lon, lat , hgt/1e3, geomagnetic_activity=-1)
+data = msis.run(msis_dates, lon, lat, hgt/1e3, geomagnetic_activity=-1)
 # N_2
 n_N2=data[0,0,0,:,1]
 # O_2
@@ -110,7 +110,7 @@ for freq in freqs:
 
     # X-mode absorption
     A_X = sinteg.trapezoid( 4.6e-5*n_e*nu_en / (nu_en**2.0 + (omega - omega_c)**2.0), hgt, dx=dh )
-    # O-mode absorption    
+    # O-mode absorption
     A_O = sinteg.trapezoid( 4.6e-5*n_e*nu_en / (nu_en**2.0 + (omega + omega_c)**2.0), hgt, dx=dh )
     plt.semilogx(freq/1e6,A_X,"o",label="f=%1.0f MHz (X)"%(freq/1e6))
     plt.semilogx(freq/1e6,A_O,"x",label="f=%1.0f MHz (O)"%(freq/1e6))
