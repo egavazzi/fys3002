@@ -10,7 +10,7 @@ from cartopy.feature.nightshade import Nightshade
 # I recommend the binned data, as it is a smaller file
 # gps150317g.004.hdf5
 # http://millstonehill.haystack.mit.edu/
-fname="gps150317g.004.hdf5"
+fname="ex04-tec/gps150317g.004.hdf5"
 
 h = h5py.File(fname,"r")
 lat=h["Data/Array Layout/gdlat"][()]
